@@ -6,12 +6,12 @@ The Political Informant App will allow anyone to easily review polititians curre
 - Picture
 - General Information
   - Name
-  - State Representing
-  - Number of Years they've held office
-  - Any committees they serve on
+  - State
+  - Number of Years served
+  - Etc.
 - Voting Record
   - Attendence for votes for the year
-  - List of recent votes taken
+  - List of recent votes submitted - Only showing major bill pass/fails
 - Statements made
   - List of recent public statements
  
@@ -22,9 +22,11 @@ The Political Informant App will allow anyone to easily review polititians curre
 ## Tech Stack
 - React + Node.js
 - API used: [ProPublica Congress API](https://projects.propublica.org/api-docs/congress-api/)
+  - Limited to 5000 Requests per day
+  - On off chance request limit is hit for any day - show error to user w/ explination
 
 ## Goals
-- Create an app that gives a quick overview of a a member of Congress. Focusing on the most recent votes submitted and statements made.
+- Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
 - All US voters will find this app usefull as a quick overview (May add links to get further information)
 
 ## Outline
@@ -34,7 +36,7 @@ WIREFRAME IMAGE GOES HERE :D
 
 - App container
   - Nav Bar
-    - Name
+    - App Name
     - Toggle for Senate / House of Reps
   - Congress Container
     - Shows Senate / House of Reps based on toggle status
@@ -48,15 +50,39 @@ WIREFRAME IMAGE GOES HERE :D
     - Displays data on selected member of congress.
       - Picture
       - Name
+      - Age
       - State
       - Party
       - Years Served
-      - Recent Voting Record
-      - Recent Statements made
+      - Social Media Links where applicable
+        - Twitter
+        - Facebook
+        - Youtube
+        - Gov page
+      - Bills Sponsored / Co-Sponsored
+      - Committees Participating On
+      - Recent Voting Record - Only Major Bill Pass/Fail votes
+        - Vote % With / Against party
+      - Recent Statements made - Includes links to more info on each statement
       - Link to more information (if applicable)
     - Toggleing Senate / House of Reps clears this section
 
-There is no backend Database for this application. All information will be pulled from the ProPublica API. No login needed. This app is purely informational and focuses on the front-end UI and presentation.
+There is no backend Database for this application. All information will be pulled from the ProPublica API. No login needed. This app is purely informational and focuses on the front-end UI and presentation. Will include consolidation of information pulled from API -> Data necessary to display.
+
+## App Logic Flow
+- Initial Load
+  - Default to Senate Display
+  - One API request for all members of Senate
+    - Consolidate Raw Data to only what is necessary for app
+      - TBD
+  - Request Resolved + Consolidated: Display the Senate Container
+  - Member Information Section is not rendered
+- Member Selected (Note: Cannot re-select the same member. Disables click for selected member)
+  - Send off all necessary API requests asynchronously
+  - Consolidate Data as requests resolve
+  - Once all requests are resolved: Display Member Information Container
+- Select Another Member
+  - Repeat above steps
 
 ## Stretch Goals
 - Adding a third option to the toggle (No more toggle, more like dropdown)
@@ -78,3 +104,8 @@ There is no backend Database for this application. All information will be pulle
   - When a Presidential Race is not active, shows details of last Presidential Race
 - Adding smoooth animations and transitions
 - Adding a live vote display
+- Adding local cacheing for API requests. Cleared when app is closed.
+  - Avoids duplicate API requests for single instance of app
+  - Cut down on # of requests attached to my API key per day
+  - EX: Initial Load -> 1 API request for Senate Members -> Toggle to House -> 1 API request for House Members -> Toggle back to Senate -> Pulls information from previous API Senate Member request instead of firing off fresh API request for Senate Members.
+  - EX2: Initial Load -> 1 API request for Senate Members -> Select Memeber A -> Multiple Async API Requests for Info on Member A -> Select Member B -> Multiple Async API Requests for Info on Member B -> Select Member A again -> Pulls info from previous response on Member A instead of firing off new API Requests for Member A
