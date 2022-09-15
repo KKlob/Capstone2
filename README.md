@@ -86,6 +86,13 @@ There is no backend Database for this application. All information will be pulle
   - Repeat above steps
 
 ## Stretch Goals
+- Adding smooth animations and transitions
+- Adding a live vote display
+- Adding local cacheing for API requests. Cleared when app is closed.
+  - Avoids duplicate API requests for single instance of app
+  - Cut down on # of requests attached to my API key per day
+  - EX: Initial Load -> 1 API request for Senate Members -> Toggle to House -> 1 API request for House Members -> Toggle back to Senate -> Pulls information from previous API Senate Member request instead of firing off fresh API request for Senate Members.
+  - EX2: Initial Load -> 1 API request for Senate Members -> Select Memeber A -> Multiple Async API Requests for Info on Member A -> Select Member B -> Multiple Async API Requests for Info on Member B -> Select Member A again -> Pulls info from previous response on Member A instead of firing off new API Requests for Member A
 - Adding a third option to the toggle (No more toggle, more like dropdown)
   - Current election Races
   - Shows map of US in Congress Container
@@ -103,10 +110,3 @@ There is no backend Database for this application. All information will be pulle
 - Adding a fourth option to the drowpdown
   - Shows Current Presidentail Race Details
   - When a Presidential Race is not active, shows details of last Presidential Race
-- Adding smoooth animations and transitions
-- Adding a live vote display
-- Adding local cacheing for API requests. Cleared when app is closed.
-  - Avoids duplicate API requests for single instance of app
-  - Cut down on # of requests attached to my API key per day
-  - EX: Initial Load -> 1 API request for Senate Members -> Toggle to House -> 1 API request for House Members -> Toggle back to Senate -> Pulls information from previous API Senate Member request instead of firing off fresh API request for Senate Members.
-  - EX2: Initial Load -> 1 API request for Senate Members -> Select Memeber A -> Multiple Async API Requests for Info on Member A -> Select Member B -> Multiple Async API Requests for Info on Member B -> Select Member A again -> Pulls info from previous response on Member A instead of firing off new API Requests for Member A
