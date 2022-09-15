@@ -1,6 +1,10 @@
 # Capstone2
 Political Informant App - Easily research politicians currently holding office in the US Senate and House of Representatives
 
+## Goals
+- Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
+- All US voters will find this app usefull as a quick overview (May add links to get further information)
+
 ## Overview
 The Political Informant App will allow anyone to easily review polititians currently in office. Information shown will included:
 - Picture
@@ -25,9 +29,6 @@ The Political Informant App will allow anyone to easily review polititians curre
   - Limited to 5000 Requests per day
   - On off chance request limit is hit for any day - show error to user w/ explination
 
-## Goals
-- Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
-- All US voters will find this app usefull as a quick overview (May add links to get further information)
 
 ## Outline
 Create basic skeleton structure of app
