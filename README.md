@@ -24,7 +24,9 @@ The Political Informant App will allow anyone to easily review polititians curre
 ---
 
 ## Tech Stack
-- React + Node.js
+- React - Handle user interface
+- Node.js - Handle logic
+- Redux - State management
 - API used: [ProPublica Congress API](https://projects.propublica.org/api-docs/congress-api/)
   - Limited to 5000 Requests per day
   - On off chance request limit is hit for any day - show error to user w/ explination
@@ -32,6 +34,9 @@ The Political Informant App will allow anyone to easily review polititians curre
 
 ## Outline
 Create basic skeleton structure of app
+
+### Note:
+There is no backend Database for this application. All information will be pulled from the ProPublica API. No login needed. This app is purely informational and focuses on the front-end UI and presentation. Will include consolidation of information pulled from API -> Data necessary to display.
 
 WIREFRAME IMAGE GOES HERE :D
 
@@ -67,8 +72,39 @@ WIREFRAME IMAGE GOES HERE :D
       - Recent Statements made - Includes links to more info on each statement
       - Link to more information (if applicable)
     - Toggleing Senate / House of Reps clears this section
+    
+## State structure
+{
 
-There is no backend Database for this application. All information will be pulled from the ProPublica API. No login needed. This app is purely informational and focuses on the front-end UI and presentation. Will include consolidation of information pulled from API -> Data necessary to display.
+  "mainDisplay": "Senate" // options: "Senate, "House",
+  
+  "SenateMembers": [Array of senate members from API],
+  
+  "HouseMembers": [Array of House Members from API],
+  
+  "MemberInfo": {Object containing selected member info}
+  
+}
+### SenateMembers / HouseMembers Data Structure
+{
+  
+   "name": "Member Name",
+    
+   "state": "State Name",
+    
+   "party": "Dem" / "Rep" / "Ind"
+  
+}, 
+For all members of Senate/House
+
+### MemberInfo Data Structure
+{
+
+  "name": "Member Name"
+
+}
+
+TBD as I work with API raw data
 
 ## App Logic Flow
 - Initial Load
