@@ -27,9 +27,16 @@ The Political Informant App will allow anyone to easily review polititians curre
 - React - Handle user interface
 - Node.js - Handle logic
 - Redux - State management
-- API used: [ProPublica Congress API](https://projects.propublica.org/api-docs/congress-api/)
-  - Limited to 5000 Requests per day
-  - On off chance request limit is hit for any day - show error to user w/ explination
+- API used: 
+  - [ProPublica Congress API](https://projects.propublica.org/api-docs/congress-api/)
+    - Limited to 5000 Requests per day
+    - On off chance request limit is hit for any day - show error to user w/ explination
+  - [Congress.gov API](https://api.congress.gov/#/)
+    - Used to get Member Photo URL
+    - Uses same ID system as ProPublica
+    - More limited than ProPublica API
+    - Base URL: https://api.congress.gov/v3/
+    - In header: X-Api-Key: API_KEY
 
 
 ## Outline
@@ -66,17 +73,49 @@ WIREFRAME IMAGE GOES HERE :D
         - Youtube
         - Gov page
       - Bills Sponsored / Co-Sponsored
-      - Committees Participating On
-      - Recent Voting Record - Only Major Bill Pass/Fail votes
-        - Vote % With / Against party
+      - Vote % With / Against party
       - Recent Statements made - Includes links to more info on each statement
       - Link to more information (if applicable)
     - Toggleing Senate / House of Reps clears this section
     
-## State structure
+## ProPublica Data Structure
+- Senate Data
+  - response.results[0].congress | Congress Number
+  - ...[0].chamber | "Senate" or "House"
+  - ...[0].members | Array of all members of Senate
+  
+- From response.results[0].members
+  - Each item = Member Object
+  - memberObj.id | Member ID
+  - memberObj.first_name + .last_name | Member Full Name
+  - memberObj.date_of_birth | Member DoB
+  - memberObj.party | Member Party
+  - memberObj.twitter_account
+  - memberObj.facebook_account
+  - memberObj.youtube_account
+  - memberObj.url | Member Gov URL
+  - memberObj.votes_with_party_pct | Member Vote with Party %
+  - 
+  - memberObj.api_uri | URL for fetching single member data
+    - response.results[0].roles[0] = Most recent Congress served in
+      - ...[0].state | State (Can be pulled from Senate API query via memberObj.ocd_id)
+      - ...[0].bills_sponsored | Member's # of sponsored bills
+      - ...[0].bills_cosponsored | Co-Sponsored Bills
+      - 
+      - Years Served
+        - response.results[0] = memberObj | memberObj.roles[0] = Most Recent Congress Served | memberObj.roles[last] = First Congres Served)
+        
+- Statements API Query (Returns 20 Results) | URL: https://api.propublica.org/congress/v1/members/{member-id}/statements/{congress}.json
+  - response.results = StatementArray
+  - For(item in StatementArray)
+    - item.url | URL to Officail Digital Statement
+    - item.date | Date of Statement
+    - item.title | Statement title
+    
+##  Redux State Structure
 {
 
-  "mainDisplay": "Senate" // options: "Senate, "House",
+  "mainDisplay": "Senate" // options: "Senate", "House",
   
   "SenateMembers": [Array of senate members from API],
   
@@ -88,7 +127,9 @@ WIREFRAME IMAGE GOES HERE :D
 ### SenateMembers / HouseMembers Data Structure
 {
   
-   "name": "Member Name",
+   "id": "Member ID"
+  
+   "name": "Member Name", // combo of "first_name" and "last_name"
     
    "state": "State Name",
     
@@ -101,10 +142,18 @@ For all members of Senate/House
 {
 
   "name": "Member Name"
-
+  
+  "id": "Member ID"
+  
+  "dob": Member Date of Birth
+  
+  "party": Member Party
+  
+  "state": Member State
+  
+  More work to be done here
+  
 }
-
-TBD as I work with API raw data
 
 ## App Logic Flow
 - Initial Load
