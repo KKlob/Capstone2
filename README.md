@@ -98,7 +98,6 @@ WIREFRAME IMAGE GOES HERE :D
   - 
   - memberObj.api_uri | URL for fetching single member data
     - response.results[0].roles[0] = Most recent Congress served in
-      - ...[0].state | State (Can be pulled from Senate API query via memberObj.ocd_id)
       - ...[0].bills_sponsored | Member's # of sponsored bills
       - ...[0].bills_cosponsored | Co-Sponsored Bills
       - 
@@ -113,47 +112,61 @@ WIREFRAME IMAGE GOES HERE :D
     - item.title | Statement title
     
 ##  Redux State Structure
+```javascript
 {
-
-  "mainDisplay": "Senate" // options: "Senate", "House",
-  
+  "mainDisplay": "Senate", // options: "Senate", "House"
   "SenateMembers": [Array of senate members from API],
-  
   "HouseMembers": [Array of House Members from API],
+  "MemberInfo": 
+  {
+    "congress": Congress Number
+    "Senate": {
+      "Rep": [Array of Rep Members Selected],
+      "Dem": [Array of Dem Members Selected],
+      "Ind": [...Independent...]
+    },
+    "House": {
+      "Rep": [...Rep Members],
+      "Dem": [...Dem Members],
+      "Ind": [...Ind Members]
+    }
+  }
+  ```
   
-  "MemberInfo": {Object containing selected member info}
-  
-}
 ### SenateMembers / HouseMembers Data Structure
+```javascript
 {
-  
-   "id": "Member ID"
-  
+   "id": "Member ID", 
    "name": "Member Name", // combo of "first_name" and "last_name"
-    
    "state": "State Name",
-    
    "party": "Dem" / "Rep" / "Ind"
-  
-}, 
-For all members of Senate/House
+   "dob": "Member Date of Birth",
+   "party": "Member Party",
+   "state": "Member State", // (Can be pulled from Senate API query via memberObj.ocd_id) Last 2 characters
+   "socials": {
+               "twitter": "Twitter_URL", 
+               "facebook": "Facebook URL", 
+               "youtube": "Youtube URL"
+              },
+  "site": "Government URL",
+  "votes_with_party": "Votes with party %",
+   "api_url": "URL for fetching single member data"
+}
+// For all members of Senate/House
+```
 
 ### MemberInfo Data Structure
+#### For secondary info requests from MemberObj.api_url(ProPublica) and Congress.gov API
+```javascript
+//All key/values to be added to matching ID member
 {
-
-  "name": "Member Name"
-  
-  "id": "Member ID"
-  
-  "dob": Member Date of Birth
-  
-  "party": Member Party
-  
-  "state": Member State
-  
-  More work to be done here
-  
+  "id": "Member ID",
+  "photo": "URL for official photo"
+  "bills_sponsored": "# of bills",
+  "bills_cosponsored": "# of bills",
+  "years_served": "# of years" // (Cale'd from year of most recent Congress - year of first congress served) 
 }
+```
 
 ## App Logic Flow
 - Initial Load
