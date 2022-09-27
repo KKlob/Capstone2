@@ -26,6 +26,7 @@ The Political Informant App will allow anyone to easily review polititians curre
 ## Tech Stack
 - React - Handle user interface
 - Node.js - Handle logic
+- React-Bootstrap - Handle styling
 - Redux - State management
 - API used: 
   - [ProPublica Congress API](https://projects.propublica.org/api-docs/congress-api/)
