@@ -116,20 +116,20 @@ WIREFRAME IMAGE GOES HERE :D
 ```javascript
 {
   "mainDisplay": "Senate", // options: "Senate", "House"
-  "SenateMembers": [Array of senate members from API],
-  "HouseMembers": [Array of House Members from API],
-  "MemberInfo": 
+  "SenateMembers": "(Map of Member Objects with keys = Member ID)",
+  "HouseMembers": "(Map of Member Objects with keys = Member ID)",
+  "MemberInfo": // Holds secondary member information gathered from secondary API calls - Collected after user selects a member for more info
   {
     "congress": Congress Number
     "Senate": {
-      "Rep": [Array of Rep Members Selected],
-      "Dem": [Array of Dem Members Selected],
-      "Ind": [...Independent...]
+      "Rep": "(Map of Member OBjs with keys = Member ID)",
+      "Dem": "(Map of Member OBjs with keys = Member ID)",
+      "Ind": "(Map of Member OBjs with keys = Member ID)"
     },
     "House": {
-      "Rep": [...Rep Members],
-      "Dem": [...Dem Members],
-      "Ind": [...Ind Members]
+      "Rep": "(Map of Member OBjs with keys = Member ID)",
+      "Dem": "(Map of Member OBjs with keys = Member ID)",
+      "Ind": "(Map of Member OBjs with keys = Member ID)"
     }
   }
   ```
