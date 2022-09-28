@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getDataFromAPI } from './app/actions';
+import CongressDisplay from './Components/CongressDisplay';
 function App() {
 
     const dispatch = useDispatch();
@@ -9,7 +10,7 @@ function App() {
 
     return (
         <div id="app">
-            <p>This is the app</p>
+            <CongressDisplay />
         </div>
     )
 }

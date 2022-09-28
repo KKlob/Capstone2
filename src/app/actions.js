@@ -19,8 +19,19 @@ export function getDataFromAPI() {
             const senateResp = responses[0].data.results[0];
             const houseResp = responses[1].data.results[0];
 
-            console.log(Util.mapMembers(senateResp));
-            console.log(Util.mapMembers(houseResp));
+            const senateMembers = Util.mapMembers(senateResp);
+            const houseMembers = Util.mapMembers(houseResp);
+
+            dispatch({
+                ...update(), payload: {
+                    mainDisplay: "Senate",
+                    senateMembers,
+                    houseMembers,
+                    selectedMember: "",
+                    memberInfoCache: new Map()
+                }
+            });
+
         })).catch(errors => {
             console.log(errors);
         });
