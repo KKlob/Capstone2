@@ -1,16 +1,20 @@
 import React from 'react';
-import uuid from 'react-uuid';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 function Member({ data }) {
 
+    let party = data.party;
+    let variant;
+    if (party === "D") variant = "primary";
+    if (party === "R") variant = "danger";
+    if (party === "ID") variant = "success";
+
+
     return (
-        <div className="member">
-            {Object.keys(data).map((key) => {
-                if (key !== "socials") {
-                    return <p key={uuid()}>{key}: {data[key]}</p>
-                }
-            })}
-        </div>
+        <Col xs={3} className={`member ${party}`}>
+            <Button className="memberButton" variant={variant} size="sm">{data.name} | {data.state}</Button>
+        </Col>
     )
 }
 

@@ -23,13 +23,13 @@ export function getDataFromAPI() {
             const houseMembers = Util.mapMembers(houseResp);
 
             dispatch({
-                ...update(), payload: {
+                ...update({
                     mainDisplay: "Senate",
                     senateMembers,
                     houseMembers,
                     selectedMember: "",
                     memberInfoCache: new Map()
-                }
+                })
             });
 
         })).catch(errors => {
@@ -38,9 +38,10 @@ export function getDataFromAPI() {
     }
 }
 
-export function update() {
+export function update(payload) {
     return {
-        type: UPDATE_STATE
+        type: UPDATE_STATE,
+        payload
     };
 }
 

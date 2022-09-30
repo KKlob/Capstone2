@@ -21,7 +21,7 @@ class ApiUtilities {
             "name": `${member.first_name} ${member.last_name}`,
             "party": member.party,
             "dob": member.date_of_birth,
-            "state": member.ocd_id.substring(member.ocd_id.length - 2).toUpperCase(),
+            "state": member.state,
             "socials": {
                 "twitter": `twitter.com/${member.twitter_account}`,
                 "facebook": `facebook.com/${member.facebook_account}`,

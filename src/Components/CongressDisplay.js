@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Member from './Member';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 function CongressDisplay() {
 
@@ -8,26 +10,21 @@ function CongressDisplay() {
 
 
     if (mainDisplay === "Senate") {
-        let iterator = senateMembers.entries();
-        let member = iterator.next();
-        const memberArray = [];
-        while (!member.done) {
-            memberArray.push(member.value[1]);
-            member = iterator.next();
-        }
-
-        console.log(memberArray);
 
         return (
-            <div id="congressDisplay">
-                {memberArray.map(member => <Member data={member} key={member.id} />)}
-            </div>
+            <Container id="congressDisplay" fluid>
+                <Row className="justify-content-center">
+                    {[...senateMembers.values()].map(member => <Member data={member} key={member.id} />)}
+                </Row>
+            </Container>
         )
     } else if (mainDisplay === "House") {
         return (
-            <div id="congressDisplay">
-
-            </div>
+            <Container id="congressDisplay" fluid>
+                <Row className="justify-content-center">
+                    {[...houseMembers.values()].map(member => <Member data={member} key={member.id} />)}
+                </Row>
+            </Container>
         )
     } else {
         return (
