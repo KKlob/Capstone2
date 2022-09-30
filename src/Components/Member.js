@@ -1,6 +1,7 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import './Member.css';
 
 function Member({ data }) {
 
@@ -12,7 +13,7 @@ function Member({ data }) {
 
 
     return (
-        <Col xs={3} className={`member ${party}`}>
+        <Col xs={3} className={`member ${party} mb-1`}>
             <Button className="memberButton" variant={variant} size="sm">{data.name} | {data.state}</Button>
         </Col>
     )

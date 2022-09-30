@@ -22,8 +22,8 @@ function App() {
 
     return (
         <div id="app">
-            <CongressDisplay />
             <Button variant="primary" onClick={toggleDisplay}>Toggle Senate / House</Button>
+            <CongressDisplay />
         </div>
     )
 }
