@@ -14,6 +14,8 @@ function InfoDisplay() {
 
     const dispatch = useDispatch();
 
+    dispatch(AddInfoToMember());
+
     if (selectedMember) {
 
 

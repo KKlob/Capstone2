@@ -1,7 +1,7 @@
 import axios from "axios";
 import { UPDATE_STATE } from "./actionTypes";
 import Util from '../Utilities/ApiUtilities';
-import { PRO_API_KEY, CON_API_KEY } from "../../secrets";
+import { PRO_API_KEY, CON_API_KEY } from "../secrets";
 
 export function getDataFromAPI() {
     return async function (dispatch) {
