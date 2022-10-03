@@ -1,7 +1,7 @@
 import axios from "axios";
 import { UPDATE_STATE } from "./actionTypes";
 import Util from '../Utilities/ApiUtilities';
-import { PRO_API_KEY, CON_API_KEY } from "../secrets";
+import { PRO_API_KEY, CON_API_KEY } from '../secrets';
 
 export function getDataFromAPI() {
     return async function (dispatch) {
@@ -48,7 +48,7 @@ export function update(payload) {
 
 export function AddInfoToMember(api_url) {
     return async function (dispatch) {
-        const addInfoRequest = await axios({
+        const addInfoRequest = axios({
             method: 'get',
             url: `${api_url}`,
             headers: { 'Content-Type': 'application/json', 'X-Api-Key': CON_API_KEY }
@@ -57,6 +57,8 @@ export function AddInfoToMember(api_url) {
         }).catch(errors => {
             console.log(errors);
         });
+
+        axios.all()
     }
 }
 

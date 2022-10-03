@@ -3,18 +3,18 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { AddInfoToMember } from '../app/actions';
 import uuid from 'react-uuid';
 
 
 function InfoDisplay() {
 
-    const { selectedMember } = { selectedMember: useSelector(state => state.selectedMember) }
+    const { selectedMember } = useSelector(state => ({ selectedMember: state.selectedMember }), shallowEqual);
 
     const dispatch = useDispatch();
 
-    dispatch(AddInfoToMember());
+    let trigger = true;
 
     if (selectedMember) {
 
