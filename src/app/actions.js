@@ -1,18 +1,19 @@
 import axios from "axios";
 import { UPDATE_STATE } from "./actionTypes";
 import Util from '../Utilities/ApiUtilities';
+import { PRO_API_KEY, CON_API_KEY } from "../../secrets";
 
 export function getDataFromAPI() {
     return async function (dispatch) {
         const senateReq = axios({
             method: 'get',
             url: 'https://api.propublica.org/congress/v1/117/senate/members.json',
-            headers: { 'Content-Type': 'application/json', 'X-Api-Key': 'X2sUp9nhWKMZH8Npl0Li2qUS16O1ASy71nI2BTbZ' }
+            headers: { 'Content-Type': 'application/json', 'X-Api-Key': PRO_API_KEY }
         });
         const houseReq = axios({
             method: 'get',
             url: 'https://api.propublica.org/congress/v1/117/house/members.json',
-            headers: { 'Content-Type': 'application/json', 'X-Api-Key': 'X2sUp9nhWKMZH8Npl0Li2qUS16O1ASy71nI2BTbZ' }
+            headers: { 'Content-Type': 'application/json', 'X-Api-Key': PRO_API_KEY }
         })
 
         axios.all([senateReq, houseReq]).then(axios.spread((...responses) => {
@@ -43,5 +44,19 @@ export function update(payload) {
         type: UPDATE_STATE,
         payload
     };
+}
+
+export function AddInfoToMember(api_url) {
+    return async function (dispatch) {
+        const addInfoRequest = await axios({
+            method: 'get',
+            url: `${api_url}`,
+            headers: { 'Content-Type': 'application/json', 'X-Api-Key': CON_API_KEY }
+        }).then(() => {
+            console.log(addInfoRequest);
+        }).catch(errors => {
+            console.log(errors);
+        });
+    }
 }
 

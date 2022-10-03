@@ -3,7 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { AddInfoToMember } from '../app/actions';
 import uuid from 'react-uuid';
 
 
@@ -11,7 +12,12 @@ function InfoDisplay() {
 
     const { selectedMember } = { selectedMember: useSelector(state => state.selectedMember) }
 
+    const dispatch = useDispatch();
+
     if (selectedMember) {
+
+
+
         return (
             <Container fluid>
                 <Row>
