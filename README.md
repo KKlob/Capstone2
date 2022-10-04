@@ -34,6 +34,7 @@ The Political Informant App will allow anyone to easily review polititians curre
     - On off chance request limit is hit for any day - show error to user w/ explination
   - [Congress.gov API](https://api.congress.gov/#/)
     - Used to get Member Photo URL
+      - Currently getting CORS error - Server Side issue - Will implement later
     - Uses same ID system as ProPublica
     - More limited than ProPublica API
     - Base URL: https://api.congress.gov/v3/
