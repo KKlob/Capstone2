@@ -20,17 +20,10 @@ export function getDataFromAPI() {
             const senateResp = responses[0].data.results[0];
             const houseResp = responses[1].data.results[0];
 
-            const senateMembers = Util.mapMembers(senateResp);
-            const houseMembers = Util.mapMembers(houseResp);
+            let baseState = Util.constructBaseState(senateResp, houseResp);
 
             dispatch({
-                ...update({
-                    mainDisplay: "Senate",
-                    senateMembers,
-                    houseMembers,
-                    selectedMember: "",
-                    memberInfoCache: new Map()
-                })
+                ...update(baseState)
             });
 
         })).catch(errors => {
