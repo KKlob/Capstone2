@@ -1,6 +1,23 @@
 # Capstone2
 Political Informant App - Easily research politicians currently holding office in the US Senate and House of Representatives
 
+## ToDo
+- CongressDisplay refactor
+  - Holds StateDisplay component
+    - StateDisplay shows a card for each state with some basic state stats
+    - clicking a card transitions to state component
+      - State component splits display into senate/house members and shows a card for each member with basic info
+      - clicking a member card causes Redux.state.currMember to update
+        - if currMember is already a member AND currMember !== member then update
+        - update can be 2 options:
+          - if secondaryInfo has been added to member, dispatch to set currMember to Redux.state member
+          - if not, dispatch getting secondaryAPI data (will set currMember to updated member)
+      - include an option to return to the state display
+- MemberInfoDisplay refactor
+  - Holds MemberInfo component
+    - MemberInfo shows info on state.currMember
+      - Does not update until user clicks a member card
+
 ## Goals
 - Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
 - All US voters will find this app usefull as a quick overview (May add links to get further information)
@@ -158,41 +175,6 @@ WIREFRAME IMAGE GOES HERE :D
   "years_served": "# of years" // (Cale'd from year of most recent Congress - year of first congress served)
 }
 
-```
-  
-### SenateMembers / HouseMembers Data Structure
-```javascript
-{
-   "id": "Member ID", 
-   "name": "Member Name", // combo of "first_name" and "last_name"
-   "state": "State Name",
-   "party": "Dem" / "Rep" / "Ind"
-   "dob": "Member Date of Birth",
-   "party": "Member Party",
-   "state": "Member State", // (Can be pulled from Senate API query via memberObj.ocd_id) Last 2 characters
-   "socials": {
-               "twitter": "Twitter_URL", 
-               "facebook": "Facebook URL", 
-               "youtube": "Youtube URL"
-              },
-  "site": "Government URL",
-  "votes_with_party": "Votes with party %",
-   "api_url": "URL for fetching single member data"
-}
-// For all members of Senate/House
-```
-
-### MemberInfo Data Structure
-#### For secondary info requests from MemberObj.api_url(ProPublica) and Congress.gov API
-```javascript
-//All key/values to be added to matching ID member
-{
-  "id": "Member ID",
-  "photo": "URL for official photo"
-  "bills_sponsored": "# of bills",
-  "bills_cosponsored": "# of bills",
-  "years_served": "# of years" // (Cale'd from year of most recent Congress - year of first congress served) 
-}
 ```
 
 ## App Logic Flow
