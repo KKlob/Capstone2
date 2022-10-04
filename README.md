@@ -115,25 +115,50 @@ WIREFRAME IMAGE GOES HERE :D
     
 ##  Redux State Structure
 ```javascript
+
 {
-  "mainDisplay": "Senate", // options: "Senate", "House"
-  "SenateMembers": "(Map of Member Objects with keys = Member ID)",
-  "HouseMembers": "(Map of Member Objects with keys = Member ID)",
-  "MemberInfo": // Holds secondary member information gathered from secondary API calls - Collected after user selects a member for more info
-  {
-    "congress": Congress Number
-    "Senate": {
-      "Rep": "(Map of Member OBjs with keys = Member ID)",
-      "Dem": "(Map of Member OBjs with keys = Member ID)",
-      "Ind": "(Map of Member OBjs with keys = Member ID)"
+  "states": {
+    "NY": {
+      "D": {
+        "idOfMember": "{memberOBJ}"
+      },
+      "R": {},
+      "ID": {},
     },
-    "House": {
-      "Rep": "(Map of Member OBjs with keys = Member ID)",
-      "Dem": "(Map of Member OBjs with keys = Member ID)",
-      "Ind": "(Map of Member OBjs with keys = Member ID)"
-    }
-  }
-  ```
+    //...etc for all 50 states;
+  },
+  "currMember": "{memberOBJ}",
+}
+
+// Member OBJ
+{
+  "id": "Member ID",
+  "chamber": "Senate" // options: "Senate" or "House" 
+   "name": "Member Name", // combo of "first_name" and "last_name"
+   "state": "State Name",
+   "party": "Dem" / "Rep" / "Ind"
+   "dob": "Member Date of Birth",
+   "party": "Member Party",
+   "state": "Member State", // (Can be pulled from Senate API query via memberObj.ocd_id) Last 2 characters
+   "socials": {
+               "twitter": "Twitter_URL", 
+               "facebook": "Facebook URL", 
+               "youtube": "Youtube URL"
+              },
+  "site": "Government URL",
+  "votes_with_party": "Votes with party %",
+   "api_url": "URL for fetching single member data"
+}
+
+// Secondary Member information - Only if selected do we grab / update
+{
+  "image": "url_of_img" // from congress.gov API -
+  "bills_sponsored": "# of bills",
+  "bills_cosponsored": "# of bills",
+  "years_served": "# of years" // (Cale'd from year of most recent Congress - year of first congress served)
+}
+
+```
   
 ### SenateMembers / HouseMembers Data Structure
 ```javascript
