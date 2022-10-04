@@ -3,8 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { AddInfoToMember } from '../app/actions';
+import { useSelector, shallowEqual } from 'react-redux';
 import uuid from 'react-uuid';
 
 
@@ -12,13 +11,7 @@ function InfoDisplay() {
 
     const { selectedMember } = useSelector(state => ({ selectedMember: state.selectedMember }), shallowEqual);
 
-    const dispatch = useDispatch();
-
-    let trigger = true;
-
     if (selectedMember) {
-
-
 
         return (
             <Container fluid>

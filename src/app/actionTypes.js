@@ -1,1 +1,2 @@
 export const UPDATE_STATE = "UPDATE_STATE";
+export const ADD_INFO_TO_MEMBER = "ADD_INFO_TO_MEMBER";

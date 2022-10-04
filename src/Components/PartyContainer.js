@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 function PartyContainer({ display }) {
 
-    const { senateMembers, houseMembers } = { senateMembers: useSelector(state => state.senateMembers), houseMembers: useSelector(state => state.houseMembers) }
+    const { senateMembers, houseMembers } = useSelector(state => ({ senateMembers: state.senateMembers, houseMembers: state.houseMembers }));
 
     function splitByParty(members) {
         const dem = [];

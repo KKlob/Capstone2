@@ -1,13 +1,15 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { useDispatch } from 'react-redux';
-import { update } from '../app/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { AddInfoToMember, update } from '../app/actions';
 import './Member.css';
 
 function Member({ data }) {
 
     const dispatch = useDispatch();
+
+    const { selectedMember } = useSelector(state => ({ selectedMember: state.selectedMember }));
 
     let party = data.party;
     let variant;
@@ -16,7 +18,11 @@ function Member({ data }) {
     if (party === "ID") variant = "success";
 
     function handleClick() {
-        dispatch(update({ selectedMember: data }));
+        if (!(data.years_served)) {
+            dispatch(AddInfoToMember(data.api_member_url));
+        } else if (data !== selectedMember) {
+            dispatch(update({ selectedMember: data }));
+        }
     }
 
 

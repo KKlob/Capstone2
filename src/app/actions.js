@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UPDATE_STATE } from "./actionTypes";
+import { UPDATE_STATE, ADD_INFO_TO_MEMBER } from "./actionTypes";
 import Util from '../Utilities/ApiUtilities';
 import { PRO_API_KEY, CON_API_KEY } from '../secrets';
 
@@ -46,19 +46,38 @@ export function update(payload) {
     };
 }
 
+export function updateMember(payload) {
+    return {
+        type: ADD_INFO_TO_MEMBER,
+        payload
+    };
+}
+
 export function AddInfoToMember(api_url) {
     return async function (dispatch) {
+        console.log("Sending secondary api request");
+        // const imgRequest = axios({
+        //     method: 'get',
+        //     url: `https://api.congress.gov/v3/member/${id}`,
+        //     headers: { 'Content-Type': 'application/json', 'X-Api-Key': CON_API_KEY }
+        // });
+
         const addInfoRequest = axios({
             method: 'get',
-            url: `${api_url}`,
-            headers: { 'Content-Type': 'application/json', 'X-Api-Key': CON_API_KEY }
-        }).then(() => {
-            console.log(addInfoRequest);
-        }).catch(errors => {
-            console.log(errors);
+            url: api_url,
+            headers: { 'Content-Type': 'application/json', 'X-Api-Key': PRO_API_KEY }
         });
 
-        axios.all()
+        axios.all([addInfoRequest]).then(axios.spread((...responses) => {
+            // const imgResp = responses[0].data;
+            const addInfoResp = responses[0].data.results[0];
+
+            // console.log(imgResp);
+            dispatch(updateMember(Util.cleanUpSecondary(addInfoResp)));
+
+        })).catch(error => {
+            console.log(error);
+        });
     }
 }
 

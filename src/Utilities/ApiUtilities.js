@@ -33,7 +33,27 @@ class ApiUtilities {
         }
     }
 
+    cleanUpSecondary(data) {
+        // Pulls additional data from secondary api call
+        // returns object with necessary key/values
+        function calcYearsServed(array) {
+            let firstCongress = array[array.length - 1];
+            let date = new Date();
+            let cYear = date.getFullYear();
+            let startYear = Number(firstCongress.start_date.slice(0, 4));
+            return (cYear - startYear);
+        }
 
+        const obj = {
+            "id": data.id,
+            "photo": "",
+            "bills_sponsored": data.roles[0].bills_sponsored,
+            "bills_cosponsored": data.roles[0].bills_cosponsored,
+            "years_served": calcYearsServed(data.roles)
+        }
+
+        return obj;
+    }
 
 }
 
