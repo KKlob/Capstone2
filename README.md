@@ -12,6 +12,9 @@ Political Informant App - Easily research politicians currently holding office i
   - Holds MemberInfo component
     - MemberInfo shows info on state.currMember
       - Does not update until user clicks a member card
+- Refactor CongressDisplay to use React.Router
+  - Include the back button in navigation
+  - Does not included MemberInfoDisplay
 
 ## Goals
 - Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
