@@ -3,16 +3,11 @@ Political Informant App - Easily research politicians currently holding office i
 
 ## ToDo
 - CongressDisplay refactor
-  - Holds StateDisplay component
-    - StateDisplay shows a card for each state with some basic state stats
-    - clicking a card transitions to state component
-      - State component splits display into senate/house members and shows a card for each member with basic info
       - clicking a member card causes Redux.state.currMember to update
         - if currMember is already a member AND currMember !== member then update
         - update can be 2 options:
           - if secondaryInfo has been added to member, dispatch to set currMember to Redux.state member
           - if not, dispatch getting secondaryAPI data (will set currMember to updated member)
-      - include an option to return to the state display
 - MemberInfoDisplay refactor
   - Holds MemberInfo component
     - MemberInfo shows info on state.currMember
