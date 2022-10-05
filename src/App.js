@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CongressDisplay from './Components/CongressDisplay';
-import InfoDisplay from './Components/InfoDisplay';
+import { getDataFromAPI } from './app/actions';
+import Container from 'react-bootstrap/Container';
+import './App.css';
 
 function App() {
 
-    return (
-        <div id="app">
-            <InfoDisplay />
-            <CongressDisplay />
+    const dispatch = useDispatch();
 
-        </div>
-    )
+    const store = useSelector(store => store);
+
+    useEffect(function setupStore() {
+        dispatch(getDataFromAPI())
+    }, [dispatch]);
+
+    if (store.states) {
+        return (
+            <Container id="app">
+                <CongressDisplay />
+            </Container>
+        )
+    }
+    else {
+
+        return (
+            <h3>Loading Data...</h3>
+        )
+    }
 }
 
 export default App;

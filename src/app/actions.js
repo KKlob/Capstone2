@@ -16,11 +16,15 @@ export function getDataFromAPI() {
             headers: { 'Content-Type': 'application/json', 'X-Api-Key': PRO_API_KEY }
         })
 
+        //Create third API request to Congress.gov API for image urls only - Add into base state when Congress.gov CORS issue resolved
+
         axios.all([senateReq, houseReq]).then(axios.spread((...responses) => {
             const senateResp = responses[0].data.results[0];
             const houseResp = responses[1].data.results[0];
 
             let baseState = Util.constructBaseState(senateResp, houseResp);
+
+            console.log(baseState);
 
             dispatch({
                 ...update(baseState)

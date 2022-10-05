@@ -2,6 +2,35 @@ class ApiUtilities {
     // Used to handle all logic of cleaning up API raw response data into a single object for Redux State
     // No Constructors. Will only hold functions
 
+    //function to sort state members into house/senate arrays
+    //Returns x
+    sortStateMembers(stateMembers) {
+        let R = stateMembers.R ? stateMembers.R : {};
+        let D = stateMembers.D ? stateMembers.D : {};
+        let I = stateMembers.I ? stateMembers.I : {};
+
+        const sortedMembers = { "Senate": [], "House": [] }
+
+        for (let members of [R, D, I]) {
+            if (Object.keys(members).length > 0) {
+                for (let member of Object.values(members)) {
+                    if (member.chamber === "Senate") sortedMembers.Senate.push(member);
+                    if (member.chamber === "House") sortedMembers.House.push(member);
+                }
+            }
+        }
+
+        return sortedMembers;
+    }
+
+    //function to count state members - Returns int
+    countStateMembers(state) {
+        let R = state.R ? Object.keys(state.R).length : 0;
+        let D = state.D ? Object.keys(state.D).length : 0;
+        let I = state.ID ? Object.keys(state.ID).length : 0;
+        return R + D + I;
+    }
+
     // function to organize member array into db state setup ({"states": {State: {Party: {Id: MemberObj}}}})
     constructBaseState(senData, houseData) {
         let states = {}
