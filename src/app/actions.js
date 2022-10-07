@@ -1,6 +1,6 @@
 import axios from "axios";
 import { UPDATE_STATE, ADD_INFO_TO_MEMBER } from "./actionTypes";
-import Util from '../Utilities/ApiUtilities';
+import Util from '../Utilities/Utilities';
 import { PRO_API_KEY, CON_API_KEY } from '../secrets';
 
 export function getDataFromAPI() {
