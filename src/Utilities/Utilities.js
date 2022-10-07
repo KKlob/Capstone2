@@ -1,4 +1,4 @@
-class ApiUtilities {
+class Utilities {
     // Used to handle all logic of cleaning up API raw response data into a single object for Redux State
     // No Constructors. Will only hold functions
 
@@ -112,6 +112,6 @@ class ApiUtilities {
 
 }
 
-const Util = new ApiUtilities();
+const Util = new Utilities();
 
 export default Util;
