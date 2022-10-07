@@ -5,8 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Util from '../Utilities/Utilities';
-import SenateContainer from './SenateContainer';
-import HouseContainer from './HouseContainer';
+import ChamberContainer from './ChamberContainer';
 import './StateMembers.css';
 
 function StateMembers({ selectedState, resetState }) {
@@ -30,11 +29,11 @@ function StateMembers({ selectedState, resetState }) {
             </Row>
             <Row className='justify-content-center'>
                 <Col xs={4} className="text-center">
-                    <SenateContainer members={sortedMembers.Senate} />
+                    <ChamberContainer members={sortedMembers.Senate} chamber="Senate" />
                 </Col>
                 <Col xs={2}></Col>
                 <Col xs={4} className="text-center">
-                    <HouseContainer members={sortedMembers.House} />
+                    <ChamberContainer members={sortedMembers.House} chamber="House" />
                 </Col>
             </Row>
         </Container>

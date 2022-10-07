@@ -5,10 +5,10 @@ import Col from 'react-bootstrap/Col';
 import uuid from 'react-uuid';
 import Member from './Member';
 
-function HouseContainer({ members }) {
+function ChamberContainer({ members, chamber }) {
 
     return (
-        <Container className="HouseContainer" fluid>
+        <Container className={chamber + "Container"} fluid>
             <Row className="justify-content-center">
                 {members.map(member => (
                     <Col xs={6} key={uuid()}>
@@ -19,4 +19,4 @@ function HouseContainer({ members }) {
     )
 }
 
-export default HouseContainer;
+export default ChamberContainer;
