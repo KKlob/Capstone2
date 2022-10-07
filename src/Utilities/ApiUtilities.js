@@ -84,7 +84,7 @@ class ApiUtilities {
         })
 
 
-        return { states, currMember: "" }
+        return { states, currMember: null }
 
     }
 
