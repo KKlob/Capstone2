@@ -15,6 +15,11 @@ Political Informant App - Easily research politicians currently holding office i
 - Refactor CongressDisplay to use React.Router
   - Include the back button in navigation
   - Does not included MemberInfoDisplay
+- Add memberCount to StateDisplay buttons
+  - Utilities.countMembers() to be added.
+  - Format member count to be small font underneath the state code
+    - Optional: Add button formatting to normalize size of buttons + change state code to state name
+      - Req: adding state name to Util.constructBaseState
 
 ## Goals
 - Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
@@ -40,8 +45,8 @@ The Political Informant App will allow anyone to easily review polititians curre
 
 ## Tech Stack
 - React - Handle user interface
-- Node.js - Handle logic
 - React-Bootstrap - Handle styling
+- React-Router - Handle routing
 - Redux - State management
 - API used: 
   - [ProPublica Congress API](https://projects.propublica.org/api-docs/congress-api/)
@@ -112,11 +117,10 @@ WIREFRAME IMAGE GOES HERE :D
   - memberObj.youtube_account
   - memberObj.url | Member Gov URL
   - memberObj.votes_with_party_pct | Member Vote with Party %
-  - 
   - memberObj.api_uri | URL for fetching single member data
     - response.results[0].roles[0] = Most recent Congress served in
-      - ...[0].bills_sponsored | Member's # of sponsored bills
-      - ...[0].bills_cosponsored | Co-Sponsored Bills
+      - ...roles[0].bills_sponsored | Member's # of sponsored bills
+      - ...roles[0].bills_cosponsored | Co-Sponsored Bills
       - 
       - Years Served
         - response.results[0] = memberObj | memberObj.roles[0] = Most Recent Congress Served | memberObj.roles[last] = First Congres Served)
@@ -142,7 +146,7 @@ WIREFRAME IMAGE GOES HERE :D
     },
     //...etc for all 50 states;
   },
-  "currMember": "{memberOBJ}",
+  "currMember": "{memberOBJ}", // null by default
 }
 
 // Member OBJ
@@ -177,18 +181,14 @@ WIREFRAME IMAGE GOES HERE :D
 
 ## App Logic Flow
 - Initial Load
-  - Default to Senate Display
-  - One API request for all members of Senate
-    - Consolidate Raw Data to only what is necessary for app
-      - TBD
-  - Request Resolved + Consolidated: Display the Senate Container
-  - Member Information Section is not rendered
-- Member Selected (Note: Cannot re-select the same member. Disables click for selected member)
-  - Send off all necessary API requests asynchronously
-  - Consolidate Data as requests resolve
-  - Once all requests are resolved: Display Member Information Container
-- Select Another Member
-  - Repeat above steps
+  - 2x API requests to ProPublica, display States
+  - User clicks a state
+    - States disappear, Members appear separarated by Senate and House of Reps.
+    - User clicks a member
+      - A Member Info display appears below the congress display. Shows more detailed info on Member.
+    - User clicks "Back to States"
+      - Members disappear, States reappear, Member Info display does not re-render if a member was clicked.
+- Back / Forward browser buttons can return to a previously viewed state
 
 ## Stretch Goals
 - Adding smooth animations and transitions
