@@ -8,7 +8,7 @@ import Member from './Member';
 function ChamberContainer({ members, chamber }) {
 
     return (
-        <Container className={chamber + "Container"}>
+        <Container className={chamber + "Container"} fluid>
             <Row className='justify-content-center'>
                 {members.map(member => (
                     <Col key={uuid()} className="text-center">

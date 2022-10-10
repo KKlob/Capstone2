@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import { AddInfoToMember, changeCurrMember } from '../app/actions';
 import './Member.css';
 
@@ -16,13 +16,13 @@ function Member({ data }) {
         if (data !== currMember) dispatch(changeCurrMember(data));
     }
 
+    let color;
+    if (data.party === "D") { color = "primary" } else if (data.party === "R") { color = "danger" } else { color = "sucess" };
 
     return (
-        <Card as="button" className="Member" onClick={handleClick}>
-            <Card.Body>
-                <Card.Title>{data.name}</Card.Title>
-            </Card.Body>
-        </Card>
+        <Button variant={"outline-" + color} onClick={handleClick}>
+            {data.name}
+        </Button>
     )
 }
 

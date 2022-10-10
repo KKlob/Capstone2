@@ -1,7 +1,8 @@
-.Member .card-title {
-    font-size: 13px;
+.Member {
+    margin-top: 10px;
+    border: 1px solid green;
 }
 
-.Member {
+button {
     margin-top: 10px;
 }
