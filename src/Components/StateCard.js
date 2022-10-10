@@ -1,14 +1,25 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import Card from 'react-boostrap/Card';
 
-function StateCard({ state, newState }) {
+function StateCard({ state, newState, data }) {
 
     function setState() {
         newState(state);
     }
 
+    console.log(data);
+
     return (
-        <Button variant='primary' onClick={setState}>{state}</Button>
+        <Card onClick={setState}>
+            <Card.Body>
+                <Card.Title>
+                    {state}
+                </Card.Title>
+                <Card.Text>
+                    Simple State Info
+                </Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 

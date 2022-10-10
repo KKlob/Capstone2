@@ -29,7 +29,7 @@ function StateDisplay() {
                 <Row className="justify-content-center">
                     {stateCodes.map(state => (
                         <Col xs={1} key={uuid()}>
-                            <StateCard state={state} newState={newState} />
+                            <StateCard state={state} newState={newState} data={states[state]} />
                         </Col>
                     ))}
                 </Row>
