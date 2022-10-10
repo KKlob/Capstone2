@@ -1,5 +1,6 @@
 import React from 'react';
-import Card from 'react-boostrap/Card';
+import Card from 'react-bootstrap/Card';
+import './StateCard.css';
 
 function StateCard({ state, newState, data }) {
 
@@ -10,7 +11,7 @@ function StateCard({ state, newState, data }) {
     console.log(data);
 
     return (
-        <Card onClick={setState}>
+        <Card as="button" onClick={setState} className="StateCard">
             <Card.Body>
                 <Card.Title>
                     {state}

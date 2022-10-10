@@ -25,7 +25,7 @@ function StateDisplay() {
         }
 
         return (
-            <Container id="StateDisplay">
+            <Container id="StateDisplay" fluid>
                 <Row className="justify-content-center">
                     {stateCodes.map(state => (
                         <Col xs={1} key={uuid()}>
