@@ -8,8 +8,6 @@ function StateCard({ state, newState, data }) {
         newState(state);
     }
 
-    console.log(data);
-
     return (
         <Card as="button" onClick={setState} className="StateCard">
             <Card.Body>

@@ -83,8 +83,7 @@ class Utilities {
             addMemberToStates(cleanMem);
         })
 
-
-        return { states, currMember: null }
+        return { states, currMember: null, memberData: {} }
 
     }
 

@@ -23,12 +23,12 @@ function App() {
             <Container id="app" fluid>
                 <Row className="justify-content-center">
                     <Col xs={10}>
-                        <StateDisplay />
+                        <InfoDisplay />
                     </Col>
                 </Row>
                 <Row className="justify-content-center">
                     <Col xs={10}>
-                        <InfoDisplay />
+                        <StateDisplay />
                     </Col>
                 </Row>
             </Container>

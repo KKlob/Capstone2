@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import StateMembers from './StateMembers';
 import StateCard from './StateCard';
 import './StateDisplay.css';
-import { UPDATE_STATE } from '../app/actionTypes';
 
 
 function StateDisplay() {
