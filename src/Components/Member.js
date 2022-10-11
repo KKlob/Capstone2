@@ -16,8 +16,9 @@ function Member({ data }) {
         if (data !== currMember) dispatch(changeCurrMember(data));
     }
 
-    let color;
-    if (data.party === "D") { color = "primary" } else if (data.party === "R") { color = "danger" } else { color = "sucess" };
+    let color = "success";
+    if (data.party === "D") { color = "primary" }
+    else if (data.party === "R") { color = "danger" }
 
     return (
         <Button variant={"outline-" + color} onClick={handleClick}>
