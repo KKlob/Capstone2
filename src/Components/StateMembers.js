@@ -16,7 +16,7 @@ function StateMembers({ selectedState, resetState }) {
 
 
     return (
-        <Container fluid id="StateMembers">
+        <Container fluid id="StateMembers align-items-center" >
             <Row className='justify-content-center'>
                 <Col className="text-center">
                     <Button variant='primary' onClick={resetState}>Return to States</Button>
@@ -28,13 +28,13 @@ function StateMembers({ selectedState, resetState }) {
                 </Col>
             </Row>
             <Row className='justify-content-center'>
-                <Col xs={4} className="text-center">
+                <Col xs={4} className="text-center mt-2">
                     <h3>Senate</h3>
                     <ChamberContainer members={sortedMembers.Senate} chamber="Senate" />
                 </Col>
             </Row>
             <Row className='justify-content-evenly'>
-                <Col xs={12} className="text-center">
+                <Col xs={12} className="text-center mt-2">
                     <h3>House of Representatives</h3>
                     <ChamberContainer members={sortedMembers.House} chamber={"House"} />
                 </Col>

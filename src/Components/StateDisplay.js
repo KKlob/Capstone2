@@ -25,10 +25,10 @@ function StateDisplay() {
 
         return (
             <Container id="StateDisplay" fluid>
-                <Row className="justify-content-center">
+                <Row className="justify-content-center align-items-center">
                     {stateCodes.map(state => (
                         <Col xs={1} key={uuid()}>
-                            <StateCard state={state} newState={newState} data={states[state]} />
+                            <StateCard state={state} newState={newState} members={states[state]} />
                         </Col>
                     ))}
                 </Row>

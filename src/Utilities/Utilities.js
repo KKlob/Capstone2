@@ -7,7 +7,7 @@ class Utilities {
     sortStateMembers(stateMembers) {
         let R = stateMembers.R ? stateMembers.R : {};
         let D = stateMembers.D ? stateMembers.D : {};
-        let I = stateMembers.I ? stateMembers.I : {};
+        let I = stateMembers.ID ? stateMembers.ID : {};
 
         const sortedMembers = { "Senate": [], "House": [] }
 
@@ -23,12 +23,12 @@ class Utilities {
         return sortedMembers;
     }
 
-    //function to count state members - Returns int
+    //function to count state members - Returns object with counts of each party
     countStateMembers(state) {
         let R = state.R ? Object.keys(state.R).length : 0;
         let D = state.D ? Object.keys(state.D).length : 0;
         let I = state.ID ? Object.keys(state.ID).length : 0;
-        return R + D + I;
+        return { R, D, I }
     }
 
     // function to organize member array into db state setup ({"states": {State: {Party: {Id: MemberObj}}}})

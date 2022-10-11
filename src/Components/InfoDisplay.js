@@ -16,7 +16,6 @@ function InfoDisplay() {
     if (selectedMember && memberData) {
 
         const member = { ...selectedMember, ...memberData }
-        console.log(member);
         return (
             <Container id="InfoDisplay" fluid>
                 <Row>
@@ -46,7 +45,6 @@ function InfoDisplay() {
             </Container >
         )
     } else if (selectedMember) {
-        console.log(selectedMember);
         return (
             <Container id="InfoDisplay" fluid>
                 <Row>
