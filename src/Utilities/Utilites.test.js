@@ -1,4 +1,4 @@
-import Util from "./ApiUtilities";
+import Util from "./Utilities";
 
 const data = {
     members: [{

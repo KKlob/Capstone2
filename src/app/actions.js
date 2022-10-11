@@ -1,10 +1,11 @@
 import axios from "axios";
-import { UPDATE_STATE, ADD_INFO_TO_MEMBER } from "./actionTypes";
-import Util from '../Utilities/ApiUtilities';
+import { UPDATE_STATE, ADD_MEMBER_INFO, CHANGE_CURR_MEMBER } from "./actionTypes";
+import Util from '../Utilities/Utilities';
 import { PRO_API_KEY, CON_API_KEY } from '../secrets';
 
 export function getDataFromAPI() {
     return async function (dispatch) {
+        console.log("getting base data from api");
         const senateReq = axios({
             method: 'get',
             url: 'https://api.propublica.org/congress/v1/117/senate/members.json',
@@ -16,21 +17,18 @@ export function getDataFromAPI() {
             headers: { 'Content-Type': 'application/json', 'X-Api-Key': PRO_API_KEY }
         })
 
+        //Create third API request to Congress.gov API for image urls only - Add into base state when Congress.gov CORS issue resolved
+
         axios.all([senateReq, houseReq]).then(axios.spread((...responses) => {
             const senateResp = responses[0].data.results[0];
             const houseResp = responses[1].data.results[0];
 
-            const senateMembers = Util.mapMembers(senateResp);
-            const houseMembers = Util.mapMembers(houseResp);
+            let baseState = Util.constructBaseState(senateResp, houseResp);
+
+            console.log(baseState);
 
             dispatch({
-                ...update({
-                    mainDisplay: "Senate",
-                    senateMembers,
-                    houseMembers,
-                    selectedMember: "",
-                    memberInfoCache: new Map()
-                })
+                ...update(baseState)
             });
 
         })).catch(errors => {
@@ -46,11 +44,18 @@ export function update(payload) {
     };
 }
 
-export function updateMember(payload) {
+export function addMemberInfo(payload) {
     return {
-        type: ADD_INFO_TO_MEMBER,
+        type: ADD_MEMBER_INFO,
         payload
-    };
+    }
+}
+
+export function changeCurrMember(payload) {
+    return {
+        type: CHANGE_CURR_MEMBER,
+        payload
+    }
 }
 
 export function AddInfoToMember(api_url) {
@@ -73,7 +78,7 @@ export function AddInfoToMember(api_url) {
             const addInfoResp = responses[0].data.results[0];
 
             // console.log(imgResp);
-            dispatch(updateMember(Util.cleanUpSecondary(addInfoResp)));
+            dispatch(addMemberInfo(Util.cleanUpSecondary(addInfoResp)));
 
         })).catch(error => {
             console.log(error);

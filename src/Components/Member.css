@@ -1,3 +1,8 @@
-.memberButton {
-    font-size: 10px;
+.Member {
+    margin-top: 10px;
+    border: 1px solid green;
+}
+
+button {
+    margin-top: 10px;
 }
