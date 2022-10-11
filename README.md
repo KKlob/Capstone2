@@ -2,24 +2,13 @@
 Political Informant App - Easily research politicians currently holding office in the US Senate and House of Representatives
 
 ## ToDo
-- CongressDisplay refactor
-  - clicking a member card causes Redux.state.currMember to update
-    - if currMember is already a member AND currMember !== member then update
-    - update can be 2 options:
-      - if secondaryInfo has been added to member, dispatch to set currMember to Redux.state member
-      - if not, dispatch getting secondaryAPI data (will set currMember to updated member)
-- MemberInfoDisplay refactor
-  - Holds MemberInfo component
-    - MemberInfo shows info on state.currMember
-      - Does not update until user clicks a member card
 - Refactor CongressDisplay to use React.Router
   - Include the back button in navigation
   - Does not included MemberInfoDisplay
-- Add memberCount to StateDisplay buttons
-  - Utilities.countMembers() to be added.
-  - Format member count to be small font underneath the state code
-    - Optional: Add button formatting to normalize size of buttons + change state code to state name
-      - Req: adding state name to Util.constructBaseState
+
+- Style InfoDisplay
+- Check on Congress.gov API to see if issue resolved
+- Clean up re-rendering components
 
 ## Goals
 - Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
