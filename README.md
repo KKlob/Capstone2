@@ -12,6 +12,7 @@ Political Informant App - Easily research politicians currently holding office i
 - Style InfoDisplay
 - Check on Congress.gov API to see if issue resolved
 - Clean up re-rendering components
+- Refactor Styling of app
 
 ## Goals
 - Create an app that gives a quick overview of Congress and all members included. Focusing on the most recent major bill votes submitted and statements made.
