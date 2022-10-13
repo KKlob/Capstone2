@@ -2,6 +2,9 @@
 Political Informant App - Easily research politicians currently holding office in the US Senate and House of Representatives
 
 ## ToDo
+- Create backend API with PostgreSQL DB for handling API requests + data sanitation. Ensures API keys are kept private
+  - Clarify with Renish on exactly what is needed for capstone to pass.
+
 - Refactor CongressDisplay to use React.Router
   - Include the back button in navigation
   - Does not included MemberInfoDisplay
