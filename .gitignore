@@ -2,3 +2,4 @@ node_modules
 /src/__snapshots__
 /src/secrets.js
 build
+.env

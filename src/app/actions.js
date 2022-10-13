@@ -1,7 +1,8 @@
 import axios from "axios";
 import { UPDATE_STATE, ADD_MEMBER_INFO, CHANGE_CURR_MEMBER } from "./actionTypes";
 import Util from '../Utilities/Utilities';
-import { PRO_API_KEY, CON_API_KEY } from '../secrets';
+
+const PRO_API_KEY = process.env.REACT_APP_PRO_API_KEY;
 
 export function getDataFromAPI() {
     return async function (dispatch) {
