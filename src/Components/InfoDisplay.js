@@ -2,10 +2,11 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
 import { useSelector, shallowEqual } from 'react-redux';
-import uuid from 'react-uuid';
 import './InfoDisplay.css';
+import DataCard from './DataCard';
+import SocialsCard from './SocialsCard';
+import BasicInfoCard from './BasicInfoCard';
 
 
 function InfoDisplay() {
@@ -16,28 +17,42 @@ function InfoDisplay() {
     if (selectedMember && memberData) {
 
         const member = { ...selectedMember, ...memberData }
+
+        const basicInfo = {
+            chamber: member.chamber,
+            name: member.name,
+            party: member.party,
+            dob: member.date_of_birth,
+            state: member.state,
+            years_served: memberData.years_served
+        };
+
+        const data = {
+            ...memberData,
+            votes_with_party: member.votes_with_party
+        }
+
+        const socials = { socials: { ...member.socials, site: member.url } };
+
         return (
             <Container id="InfoDisplay" fluid>
                 <Row>
                     <Col className="mempic" xs={2}>
                         <p>Image goes here</p>
                     </Col>
-                    <Col className="basic_info">
+                    <Col className="member_info" xs={10}>
                         <Container fluid>
-                            <Row className="justify-content-center">
-                                {Object.keys(member).map((key) => {
-                                    if (key !== "socials" && key !== "photo") {
-                                        return (
-                                            <Col key={uuid()}>
-                                                <Card>
-                                                    <Card.Title>{key.charAt(0).toUpperCase() + key.slice(1)}</Card.Title>
-                                                    <Card.Body>{member[key]}</Card.Body>
-                                                </Card>
-                                            </Col>
-                                        )
-                                    }
-                                    return null;
-                                })}
+                            <Row className="justify-content-center align-items-center">
+                                <Col className="text-center">
+                                    <BasicInfoCard data={basicInfo} />
+                                </Col>
+                                <Col className="text-center">
+                                    <SocialsCard data={socials} />
+
+                                </Col>
+                                <Col className="text-center">
+                                    <DataCard data={data} />
+                                </Col>
                             </Row>
                         </Container>
                     </Col>
@@ -48,30 +63,11 @@ function InfoDisplay() {
         return (
             <Container id="InfoDisplay" fluid>
                 <Row>
-                    <Col className="mempic" xs={2}>
-                        <p>Image goes here</p>
-                    </Col>
-                    <Col className="basic_info">
-                        <Container fluid>
-                            <Row className="justify-content-center">
-                                {Object.keys(selectedMember).map((key) => {
-                                    if (key !== "socials") {
-                                        return (
-                                            <Col key={uuid()}>
-                                                <Card>
-                                                    <Card.Title>{key.charAt(0).toUpperCase() + key.slice(1)}</Card.Title>
-                                                    <Card.Body>{selectedMember[key]}</Card.Body>
-                                                </Card>
-                                            </Col>
-                                        )
-                                    }
-                                    return null;
-                                })}
-                            </Row>
-                        </Container>
+                    <Col className="text-center align-center">
+                        <h3>Loading Information on {selectedMember.name}</h3>
                     </Col>
                 </Row>
-            </Container >
+            </Container>
         )
     }
     return (
