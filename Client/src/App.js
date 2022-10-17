@@ -15,6 +15,12 @@ function App() {
     const store = useSelector(store => store);
 
     useEffect(function setupStore() {
+        // to test our local api
+        fetch('/api')
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+
+        // Migrate to backend - No longer necessary for App to have Redux store reference
         dispatch(getDataFromAPI())
     }, [dispatch]);
 

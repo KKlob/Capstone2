@@ -7,6 +7,8 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../Client/build')));
 
+// Logic for SQL DB 
+
 // API ROUTES
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
