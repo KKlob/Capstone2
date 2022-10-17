@@ -2,6 +2,8 @@
 Political Informant App - Easily research politicians currently holding office in the US Senate and House of Representatives
 
 ## ToDo
+- fix social links
+
 - Create backend API with PostgreSQL DB
   - Holds API keys
   - Caches complete data for application and handles sanitation
