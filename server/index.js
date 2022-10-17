@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../opt/build/repo/build')));
+app.use(express.static(path.resolve(__dirname, '../Client/build')));
 
 // API ROUTES
 app.get("/api", (req, res) => {
@@ -15,7 +15,7 @@ app.get("/api", (req, res) => {
 // ALL OTHER ROUTES NOT HANDLED RETURN THE REACT CLIENT
 
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../opt/build/repo/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../Client/build', 'index.html'));
 });
 
 
