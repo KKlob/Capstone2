@@ -1,8 +1,11 @@
 const express = require("express");
 const path = require('path');
 const { initializeData } = require('./API_Utils');
+const { Sequelize } = require('sequelize');
 
 const PORT = process.env.PORT || 3001;
+
+const sequelize = new Sequelize('sqlite::memory:');
 
 const app = express();
 
@@ -13,7 +16,7 @@ app.use(express.static(path.resolve(__dirname, '../Client/build')));
 
 // Logic for Base API calls to gather all necessary Raw info + Logic for Sanitation of data
 
-initializeData();
+initializeData(sequelize);
 
 // API ROUTES
 

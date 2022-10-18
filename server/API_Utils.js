@@ -78,10 +78,13 @@ function cleanUpData(rawData) {
     return { states, currMember: null, memberData: {} }
 }
 
-function initializeData() {
+function initializeData(sequelize) {
     getDataFromPP().then(data => {
         let cleanData = cleanUpData(data);
         console.log(cleanData);
+        sequelize.authenticate().then(() => {
+            console.log('Connection established to db');
+        }).catch(error => console.error(error));
     });
 }
 
