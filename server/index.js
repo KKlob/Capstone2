@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require('path');
+const { initializeData } = require('./API_Utils');
 
 const PORT = process.env.PORT || 3001;
 
@@ -8,6 +9,8 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../Client/build')));
 
 // Logic for Base API calls to gather all necessary Raw info + Logic for Sanitation of data
+
+initializeData();
 
 // Logic for SQL DB
 // Initializing info post-api calls and sanitation. Update if info already exists in db 
