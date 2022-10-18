@@ -8,12 +8,12 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../Client/build')));
 
+// Logic for SQL DB
+// Initializing info post-api calls and sanitation. Update if info already exists in db 
+
 // Logic for Base API calls to gather all necessary Raw info + Logic for Sanitation of data
 
 initializeData();
-
-// Logic for SQL DB
-// Initializing info post-api calls and sanitation. Update if info already exists in db 
 
 // API ROUTES
 
@@ -26,6 +26,9 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
 });
 
+app.get('/api/congress', async (req, res) => {
+    res.json({ message: "This is congress" });
+})
 // ALL OTHER ROUTES NOT HANDLED RETURN THE REACT CLIENT
 
 app.get('*', (req, res) => {
