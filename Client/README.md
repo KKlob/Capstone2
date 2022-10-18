@@ -2,6 +2,14 @@
 Political Informant App - Easily research politicians currently holding office in the US Senate and House of Representatives
 
 ## ToDo
+- Today:
+  - initialize DB + fully setup express server (Client still gets its own data for now - CORS error?)
+  
+- Tomorrow:
+  - Move all 3rd party API calls to express server, Client requests data from local server.
+
+- update app readme location + add readme for Client + Server individually
+
 - fix social links
 
 - Create backend API with PostgreSQL DB
